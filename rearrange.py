@@ -7,12 +7,15 @@
 import sys
 from random import randint
 
-words = sys.argv[1:]
-numberOfWords = words.__len__()
-possibleIndexes = numberOfWords - 1
+def shuffle(array):
+	numberOfElements = array.__len__()
+	possibleIndexes = numberOfElements - 1
 
-for i in range(0, possibleIndexes):
-	randomIndex = randint(0, possibleIndexes)
-	words[i] , words[randomIndex] = words[randomIndex], words[i]
+	for i in range(0, possibleIndexes):
+		randomIndex = randint(0, possibleIndexes)
+		words[i] , words[randomIndex] = words[randomIndex], words[i]
 
-print words
+if __name__ == '__main__':
+	words = sys.argv[1:]
+	shuffle(words)
+	print words
