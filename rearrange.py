@@ -13,7 +13,7 @@ def shuffle(array):
 
 	for i in range(0, possibleIndexes):
 		randomIndex = randint(0, possibleIndexes)
-		words[i] , words[randomIndex] = words[randomIndex], words[i]
+		array[i] , array[randomIndex] = array[randomIndex], array[i]
 
 if __name__ == '__main__':
 	words = sys.argv[1:]
