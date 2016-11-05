@@ -23,7 +23,7 @@ def generateAnagram(string, language="en_US"):
 		if languageDict.check(wordWithShuffledCharacters):
 			# return it
 			return wordWithShuffledCharacters
-	# if the characters were shuffled 101 times and didn't get a match, return out with message.
+	# if the characters were shuffled n! times and didn't get a match, return out with message.
 	return "There is no anagram in %s for %s." % (language, string)
 
 # if run from terminal, take first command line arg and attempt to generate anagram, return the result
