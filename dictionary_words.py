@@ -12,6 +12,11 @@ start_time = time.time()
 # --- 0.212635993958 seconds ---
 # --- 0.0250890254974 seconds ---
 
+# after using f.close()
+# --- 0.0486791133881 seconds ---
+# --- 0.0324649810791 seconds ---
+# --- 0.100464105606 seconds ---
+
 from random import randint
 
 # returns a sentence based on int arg, words taken from words file in /usr/share/dict/words
@@ -27,6 +32,8 @@ def generateSentenceWithAmountOfWords(numberOfWordsToReturn):
 
 	# after optimization
 	listOfWords = f.readlines()
+
+	f.close()
 
 	# store all possible indexes of the list of words
 	possibleIndexes = listOfWords.__len__() - 1
