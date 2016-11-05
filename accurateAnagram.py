@@ -1,4 +1,4 @@
-import sys, rearrange, enchant
+import sys, rearrange, enchant, math
 
 # this returns a new string which is the argument string with its characters shuffled to form a new word
 def shuffleCharactersOf(string):
@@ -13,8 +13,9 @@ def shuffleCharactersOf(string):
 def generateAnagram(string, language="en_US"):
 	# create dictionary from language
 	languageDict = enchant.Dict(language) 
-	# iterate 101 times
-	for i in range(0,100):
+	# iterate n! times, where n is the number of characters in the string
+	numberOfPossibleCombinationsForString = math.factorial(len(string))
+	for i in range(0, numberOfPossibleCombinationsForString):
 		# shuffle characters in the string
 		wordWithShuffledCharacters = shuffleCharactersOf(string)
 
@@ -23,7 +24,7 @@ def generateAnagram(string, language="en_US"):
 			# return it
 			return wordWithShuffledCharacters
 	# if the characters were shuffled 101 times and didn't get a match, return out with message.
-	return "It's taking a while to find an anagram."
+	return "There is no anagram in %s for %s." % (language, string)
 
 # if run from terminal, take first command line arg and attempt to generate anagram, return the result
 if __name__ == '__main__':
