@@ -28,12 +28,14 @@ def shuffleCharactersOf(string):
 	# return new string
 	return ''.join(listOfCharacters)
 
+
 # this generates an anagram from the string arg
 
 # might give a false negative because even though there are n! possibilities, the characters
 #   are being shuffled randomly and won't always reach every possibility always. 
 
 # possibility of getting a false positive is greater with smaller word length
+
 def generateAnagram(string):
 	# create dictionary from language
 	
