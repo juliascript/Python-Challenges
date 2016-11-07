@@ -21,7 +21,35 @@ def isWordPresentInTrie(trie, word):
 	else: 
 		return False 
 
-# arrayOfWords = ['hello', 'hey', 'what', 'when', 'why']
-# wordsTrie = generateTrieFromWordsArray(arrayOfWords)
+def offerPossibleCompletionsToStringInTrie(trie, string):
+	currentDict = trie
+	# step down to provided beginning of words
+	for letter in string: 
+		if letter in currentDict:
+			currentDict = currentDict[letter]
+		else:
+			return "Trie does not offer any completions to %s" % (string)
+	# now current dict is at the level which would offer completions. 
+	printCompletionsFromNode(currentDict, string)
+
+def printCompletionsFromNode(trie, string):
+	currentDict = trie
+	word = string
+	# iterate over all children of the current letter node
+	for letter in currentDict:
+		# if the word is completed, print it
+		if letter == "$":
+			print(word)
+		else:
+			word = string + letter
+			# function calls itself to handle all possible completions 
+			printCompletionsFromNode(currentDict[letter], word)
+
+
+
+arrayOfWords = ['hello', 'hey', 'what', 'when', 'why']
+wordsTrie = generateTrieFromWordsArray(arrayOfWords)
+# print wordsTrie['h']['e']
 # print isWordPresentInTrie(wordsTrie, 'hello')
 # print isWordPresentInTrie(wordsTrie, 'hellow')
+print offerPossibleCompletionsToStringInTrie(wordsTrie, 'w')
