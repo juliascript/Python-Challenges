@@ -40,6 +40,11 @@ def averageFrequencyOfWordsIn(histogram):
 
 	return sumOfFrequencies / numberOfWords
 
+def createHistogramFileWithName(filename, histogram):
+	f = open(filename, 'w')
+	for word, count in histogram:
+		f.write("%s %i\n" % (word, count))
+
 if __name__ == "__main__":
 	textFile = sys.argv[1]
 	histogram = generateHistogramFromFile(textFile)
@@ -48,6 +53,7 @@ if __name__ == "__main__":
 	print 'mostFrequentWord: ', mostFrequentWordIn(sortedHistogram)
 	print 'numberOfUniqueWords: ', numberOfUniqueWordsIn(sortedHistogram)
 	print 'averageFrequencyOfWords: ', averageFrequencyOfWordsIn(sortedHistogram)
+	createHistogramFileWithName('histogram.txt', sortedHistogram)
 
 
 
