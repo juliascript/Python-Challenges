@@ -9,6 +9,18 @@ def generateTrieFromWordsArray(words):
 		currentDict[endOfWord] = endOfWord
 	return root
 
+def generateTrieFromWordsArrayAndCountRepititions(words):
+	root = {}
+	for word in words:
+		currentDict = root
+		for letter in word:
+			currentDict = currentDict.setdefault(letter, {})
+		if endOfWord in currentDict:
+			currentDict[endOfWord] = currentDict[endOfWord] + 1
+		else: 
+			currentDict[endOfWord] = 1
+	return root
+
 def isWordPresentInTrie(trie, word):
 	currentDict = trie
 	for letter in word:
