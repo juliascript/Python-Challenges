@@ -13,7 +13,7 @@ def generateArrayOfWordsFromWordsTextFile():
 	# create array of words
 	listOfWords = words.split('\n')
 	# close the file
-	f.close()
+	# f.close() -> file is automatically closed once file processes stop running
 	# return list of words
 	return listOfWords
 
