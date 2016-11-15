@@ -1,6 +1,5 @@
 import sys, histogram, random, math
 
-
 def generateRandomWordFromHistogram(_histogram):
 	totalWords = 0
 	listOfTuples = []
@@ -13,16 +12,16 @@ def generateRandomWordFromHistogram(_histogram):
 	# generate random int and then binary search to find the word it correlates to
 	randomInt = random.randint(1, totalWords)
 	word = binarySearch(listOfTuples, randomInt)
-	print word
+	print 'returned:', word
 	return word
-
 
 def binarySearch(tuples, index):
 	half = math.floor(len(tuples) / 2)
 	midpointIndexOfTuplesList = int(half)
 	if midpointIndexOfTuplesList == 1:
-		print tuples[midpointIndexOfTuplesList][0]
-		return tuples[midpointIndexOfTuplesList][0]
+		word = tuples[midpointIndexOfTuplesList][0]
+		print 'about to return', word
+		return word
 
 	midpointOfTuplesList = tuples[midpointIndexOfTuplesList]
 
@@ -30,7 +29,7 @@ def binarySearch(tuples, index):
 	upperBoundOfMidpoint = midpointOfTuplesList[1]
 
 	if lowerBoundOfMidpoint <= index <= upperBoundOfMidpoint:
-		print tuples[midpointIndexOfTuplesList][0]
+		print 'about to return', word
 		return tuples[midpointIndexOfTuplesList][0]
 	elif index < lowerBoundOfMidpoint:
 		upperBound = midpointIndexOfTuplesList - 1
@@ -40,10 +39,20 @@ def binarySearch(tuples, index):
 		binarySearch(tuples[midpointIndexOfTuplesList:-1], index)
 
 
-
-if __name__ == "__main__":
-	_file = sys.argv[1]
-	_histogram = histogram.generateHistogramFromFile(_file)
+def generateSentenceFromTextfile(textfile):
+	_histogram = histogram.generateHistogramFromFile(textfile)
 	sortedHistogram = histogram.sortHistogram(_histogram)
 	# print sortedHistogram
 	print generateRandomWordFromHistogram(sortedHistogram)
+
+	sentence = []
+	for i in range(7):
+		randomWord = generateRandomWordFromHistogram(sortedHistogram)
+		sentence.append(randomWord)
+
+	return (' ').join(sentence)
+
+if __name__ == "__main__":
+	_file = sys.argv[1]
+	print generateSentenceFromTextfile(_file)
+	
